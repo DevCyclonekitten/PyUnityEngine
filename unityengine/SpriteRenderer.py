@@ -17,9 +17,11 @@ class SpriteRenderer():
     def Start(self):
         if(self.scene!=None):
             self.camera = self.scene.camera
+        if(self.gameObject!=None):
+            self.gameObject.scene = self.scene
     def Update(self):
         if(self.camera!=None):
-            self.camera.RenderRect(self.gameObject.transform.position,self.material,100*self.gameObject.transform.scale.x,100**self.gameObject.transform.scale.y)
+            self.camera.RenderRect(self.gameObject.transform,self.material)
         else:
             if(self.scene!=None):
                 self.camera = self.scene.camera
@@ -35,3 +37,8 @@ class SpriteRenderer():
 
         go.AddComponent(spr)
         return go
+    def Clone(self):
+        spr = SpriteRenderer()
+        spr.camera = self.camera
+        spr.material = self.material
+        return spr

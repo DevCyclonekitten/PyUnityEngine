@@ -18,7 +18,7 @@ movingsquare = SpriteRenderer.CreatePrefab(scene=scene,material=Blue)
 circlesquare = SpriteRenderer.CreatePrefab(scene=scene,material=Green)
 
 square.transform.scale=Vector2(0.2,0.2)
-movingsquare.transform.scale=Vector2(2,1)
+movingsquare.transform.scale=Vector2(1,1)
 circlesquare.transform.scale=Vector2(0.5,0.5)
 
 

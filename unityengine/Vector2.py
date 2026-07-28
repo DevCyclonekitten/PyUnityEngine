@@ -26,6 +26,8 @@ class Vector2():
     def ReturnScaled(self,fact):
         v = Vector2(self.x*fact,self.y*fact)
         return v
+    def Clone(self):
+        return Vector2(self.x,self.y)
 
 
 def Clamp(inp, min,max):

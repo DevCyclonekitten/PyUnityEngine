@@ -7,3 +7,4 @@ from unityengine.Vector2 import *
 from unityengine.Transform import *
 from unityengine.Time import *
 from unityengine.Material import *
+from unityengine.Input import *

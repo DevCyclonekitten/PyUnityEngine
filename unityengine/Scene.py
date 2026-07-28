@@ -4,6 +4,7 @@ class Scene():
         self.sceneGameObjects = []
         self.camera = camera
         self.frameCounter=0
+        self.hasRanStart = False
     def ConnectCamera(self,camera):
         self.camera = camera
         self.AddGameObject(self.camera.gameObject)
@@ -17,6 +18,8 @@ class Scene():
                     m.scene=self
                     m.Start()
     def RunMonobehaviour(self):
+        if(not self.hasRanStart):
+            self.StartMonobehaviour()
         self.frameCounter+=1
         for gameObject in self.sceneGameObjects:
             for monobehaviour in gameObject.monobehaviours.keys():
@@ -25,6 +28,7 @@ class Scene():
                     m.EarlyUpdate()
 
         for gameObject in self.sceneGameObjects:
+            gameObject.Update()
             for monobehaviour in gameObject.monobehaviours.keys():
                 m = gameObject.monobehaviours[monobehaviour]
                 if(m.usingUnityEngine):

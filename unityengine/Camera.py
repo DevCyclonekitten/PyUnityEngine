@@ -36,12 +36,14 @@ class Camera():
         return pixel.ReturnScaled(100)
     def PixelToLength(self,length):
         return length/100
-    def RenderRect(self,position, material,width,height):
+    def RenderRect(self,transform, material):
         #screen position
-        center = self.PositionToPixel(position.ReturnSubtract(self.gameObject.transform.position)).ReturnAdd(Vector2(self.SCREEN_WIDTH/2,self.SCREEN_HEIGHT/2))
+        width = transform.scale.x*100
+        height = transform.scale.y*100
+        center = self.PositionToPixel(transform.position.ReturnSubtract(self.gameObject.transform.position)).ReturnAdd(Vector2(self.SCREEN_WIDTH/2,self.SCREEN_HEIGHT/2))
         center = center.ReturnSubtract(Vector2(width/2,-height/2))
         #center = self.PositionToPixel(center)
-        pygame.draw.rect(self.window,material.baseColour,(center.x,self.SCREEN_HEIGHT-center.y,100,height))
+        pygame.draw.rect(self.window,material.baseColour,(center.x,self.SCREEN_HEIGHT-center.y,width,height))
         #print((center.x,center.y))
     def CreatePrefab(scene=None):
         go = GameObject()
