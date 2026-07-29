@@ -1,8 +1,13 @@
-
+import math
 class BoxCollider2D():
     def __init__(self):
-        pass
-    import math
+        self.usingUnityEngine = True
+        self.enabled = True
+        self.gameObject = gameObject
+        self.monobehaviourname = "BoxCollider2D"
+        self.started = False
+    def OnCollision(self):
+        
 
 def check_collision(vectora, scalea, vectorb, scaleb):
     width_a, height_a = 1.0 * scalea.x, 1.0 * scalea.y

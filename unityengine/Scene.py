@@ -33,6 +33,7 @@ class Scene():
                 m = gameObject.monobehaviours[monobehaviour]
                 if(m.usingUnityEngine):
                     m.Update()
+                    print(str(m))
 
         for gameObject in self.sceneGameObjects:
             for monobehaviour in gameObject.monobehaviours.keys():

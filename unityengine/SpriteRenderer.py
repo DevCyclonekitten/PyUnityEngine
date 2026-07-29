@@ -21,6 +21,8 @@ class SpriteRenderer():
             self.gameObject.scene = self.scene
     def Update(self):
         if(self.camera!=None):
+            if(self.scene!=None):
+                self.camera = self.scene.camera
             self.camera.RenderRect(self.gameObject.transform,self.material)
         else:
             if(self.scene!=None):

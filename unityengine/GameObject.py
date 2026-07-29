@@ -2,14 +2,16 @@ from unityengine.Transform import *
 from unityengine.Time import *
 import copy,pygame
 class GameObject():
-    def __init__(self): #Create your variables here
+    def __init__(self,scene=None): #Create your variables here
         #These variables are required
         self.usingUnityEngine = True
         self.enabled = True
         self.monobehaviours = {}
         self.monobehaviourname = "GameObject"
         self.transform = Transform()
-        self.scene = None
+        self.scene = scene
+        if(scene!=None):
+            scene.AddGameObject(self)
         self.destroyTime = -9999
     def Destroy(self,time=0):
         if(time==0):

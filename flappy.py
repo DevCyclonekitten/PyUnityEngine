@@ -1,11 +1,33 @@
+#required namespaces
 from unityengine import *
 import time,math,random,pygame
 
+
+# user defined namespaces
+from BirdCharacter import BirdCharacter
+
+
+
+# global objects
 time = Time()
 userinput = Input()
 
 gameScene = Scene()
 gameCamera = Camera.CreatePrefab(scene=gameScene)
+
+
+
+bird = GameObject(scene=gameScene)
+birdscript = BirdCharacter(gameObject=bird)
+bird.AddComponent(birdscript)
+
+
+
+
+
+
+
+
 
 pipeMaterial = Material(baseColour=(0,255,0))
 birdMaterial = Material(baseColour=(255,255,0))
@@ -31,15 +53,9 @@ pipeBottom.transform.position = Vector2(-500,0)
 pipeBottom.transform.scale = Vector2(0.5,5)
 pipeBottom.AddComponent(Rigidbody2D())
 
-bird = SpriteRenderer.CreatePrefab(scene=gameScene,material=birdMaterial)
-birdrb = bird.AddComponent(Rigidbody2D())
-bird.transform.scale = Vector2(0.35,0.35)
-bird.transform.position = Vector2(-2,0)
 
 #Game Settings
-birdJumpVelocity = 3
-birdGravityScale = 0.75
-birdDeathHeight = -1.5
+
 
 pipeMovementSpeed = 2
 pipeGapDistance = 1.5
@@ -48,10 +64,10 @@ pipeSpawnTimer = 2
 pipeHeightRange = 1.25
 
 
-birdrb.gravity *=birdGravityScale
 
 
-
+def Die():
+    pass
 def ClonePipe():
     global pipeTop
     yheight = random.randint(-int(pipeHeightRange*10),int(pipeHeightRange*10))/10
@@ -72,27 +88,12 @@ def ClonePipe():
     btm.Destroy(10)
 
 timer = 0
-particles = []
 while True:
     
     maps = userinput.GetDown()
     if(maps["up"]==True):
-        birdrb.velocity = Vector2(0,birdJumpVelocity)
-        for i in range(20):
-            go = GameObject.Instantiate(bird,position = bird.transform.position.Clone())
-            rb = go.GetComponent("Rigidbody2D")
-            rb.AddForce(Vector2(random.randint(-30,-10)/10,random.randint(-30,10)/10))
-            go.transform.scale.Scale(Vector2(0.3,0.3))
-            spr = go.GetComponent("SpriteRenderer")
-            spr.material = particleMaterial
+        birdscript.Jump()
 
-            go.Destroy(0.2+random.randint(3,10)/20)
-            particles.append(go)
-    for p in particles:
-        if(p is None):
-            particles.remove(p)
-        else:
-            p.transform.scale.Scale(Vector2(0.95,0.95))
 
 
     pipeSpawnTimer -= Time.deltaTime
@@ -104,10 +105,7 @@ while True:
             pipeSpawnRate=0.4
         ClonePipe()
     
-    
-    if(bird.transform.position.y<birdDeathHeight):
-        bird.transform.position.y = 0
-        birdrb.velocity = Vector2(0,0)
+
     
     gameScene.RunMonobehaviour()
     time.Tick()
