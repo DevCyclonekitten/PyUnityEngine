@@ -21,12 +21,14 @@ class SpriteRenderer():
             self.gameObject.scene = self.scene
     def Update(self):
         if(self.camera!=None):
-            if(self.scene!=None):
-                self.camera = self.scene.camera
+            print("Cam is valid")
             self.camera.RenderRect(self.gameObject.transform,self.material)
         else:
             if(self.scene!=None):
+                print("Scene is not none")
                 self.camera = self.scene.camera
+            else:
+                print("Scene and cam is none")
     def EarlyUpdate(self):
         pass
     def LateUpdate(self):

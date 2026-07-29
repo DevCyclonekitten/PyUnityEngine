@@ -29,7 +29,7 @@ class BirdCharacter():
         self.sprite.material = Material((255,0,255))
 
 
-        self.gameObject.transform.scale = Vector2(0.35,0.35)
+        self.gameObject.transform.scale = Vector2(1,1)
         self.gameObject.transform.position = Vector2(2,0)
 
     def Jump(self):
