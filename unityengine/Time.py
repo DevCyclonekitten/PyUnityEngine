@@ -1,7 +1,8 @@
 import pygame
 class Time:
-    deltaTime = 0.02
+    deltaTime = 1/60
     def __init__(self):
         self.clock=pygame.time.Clock()
     def Tick(self):
-        self.clock.tick(60)
+        pass
+        self.clock.tick_busy_loop(60)

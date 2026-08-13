@@ -73,7 +73,7 @@ class GameObject():
                     pass
                 #print("new rigidbody pls")
             except Exception as e:
-                print("[DEBUG] Could not run explicit cloning of monobehaviour "+value.monobehaviourname)
+                print(f"[DEBUG] Could not run explicit cloning of monobehaviour "+value.monobehaviourname+f"\n - Err {e}")
                 result = copy.copy(value)
                 result.gameObject=new
                 result.transform = t

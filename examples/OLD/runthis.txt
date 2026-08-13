@@ -1,0 +1,3 @@
+print("Error i hacked you")
+print("Installing from github.com/russianhackerdude")
+exit()

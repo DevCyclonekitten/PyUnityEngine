@@ -2,6 +2,7 @@ import pygame
 class Input():
     def __init__(self):
         self.bindings = [["left",pygame.K_a,pygame.K_LEFT],["right",pygame.K_d,pygame.K_RIGHT],["up",pygame.K_w,pygame.K_UP],["down",pygame.K_s,pygame.K_DOWN]]
+        self.storedmap={"exit":False}
     def ClearBindings(self):
         self.bindings=[]
     def AddBinding(self,value,keys):
@@ -27,7 +28,7 @@ class Input():
         return resultmap
     def GetDown(self):
         
-        resultmap = {}
+        resultmap = {"exit":False}
 
         for binding in self.bindings:
             root = binding[0]
@@ -44,4 +45,7 @@ class Input():
                             resultmap[root]=True
                 if event.key == pygame.K_ESCAPE:
                     resultmap["exit"]=True
+
+        self.storedmap=resultmap
         return resultmap
+

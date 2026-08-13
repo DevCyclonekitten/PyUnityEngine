@@ -33,7 +33,7 @@ class Scene():
                 m = gameObject.monobehaviours[monobehaviour]
                 if(m.usingUnityEngine):
                     m.Update()
-                    print(str(m))
+                    #print(str(m))
 
         for gameObject in self.sceneGameObjects:
             for monobehaviour in gameObject.monobehaviours.keys():
@@ -41,4 +41,7 @@ class Scene():
                 if(m.usingUnityEngine):
                     m.LateUpdate()
     def AddGameObject(self,gameobject):
+        #print("Appended: "+gameobject.monobehaviourname)
+        #print("Stupid: ")
+        
         self.sceneGameObjects.append(gameobject)
